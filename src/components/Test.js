@@ -8,34 +8,41 @@ class Test extends React.Component {
     this.state = {
       questions: [],
       questionIndex: 0,
-      questionCurrent: { category: '', identifier: '', question: '', answer_a: '', answer_b: '', right_answer: ''},
+      questionCurrent: {
+        category: '',
+        identifier: '',
+        question: '',
+        answer_a: '',
+        answer_b: '',
+        right_answer: ''
+      },
       showAnswer: false,
       cardCount: 0
     };
   }
 
   componentDidMount() {
-    const headers = new Headers()
-    headers.append('auth', localStorage.getItem('chip'))
-    
+    const headers = new Headers();
+    headers.append('auth', localStorage.getItem('chip'));
+
     fetch('/api/cards', { headers: headers })
       .then(res => res.json())
       .then(data => {
-        this.setState({ 
+        this.setState({
           questions: data,
           questionIndex: 0,
           questionCurrent: data[0]
-        })
-      })
+        });
+      });
   }
-  
+
   toggleResult() {
     this.setState({
       showAnswer: !this.state.showAnswer
-    })
+    });
   }
 
-  validateAnswer(answer, id) {
+  validateAnswer(answer) {
     if (answer.target.value === this.state.questionCurrent.right_answer ) {
       this.props.changeScore(10, this.state.questionCurrent.identifier);
     } else {
@@ -43,25 +50,25 @@ class Test extends React.Component {
     }
     this.toggleResult();
   }
-  
+
   nextQuestion() {
-    if(this.state.questionIndex === this.state.questions.length -1 ) {
-      this.setState({ 
+    if (this.state.questionIndex === this.state.questions.length -1 ) {
+      this.setState({
         questionIndex: 0,
-        questionCurrent: this.state.questions[0] 
-      })
+        questionCurrent: this.state.questions[0]
+      });
     } else {
-      this.setState({ 
+      this.setState({
         questionIndex: this.state.questionIndex + 1,
         questionCurrent: this.state.questions[this.state.questionIndex + 1],
         cardCount: this.state.cardCount + 1
-      })
+      });
     }
-    this.toggleResult()
+    this.toggleResult();
   }
 
   render() {
-    let correctAnswer = ''
+    let correctAnswer = '';
     if (this.state.questionCurrent.right_answer === 'A') {
       correctAnswer = this.state.questionCurrent.answer_a;
     } else {
@@ -69,18 +76,17 @@ class Test extends React.Component {
     }
 
     return (
-      <main role="main">
-        <section id="test_container">
+      <main role='main'>
+        <section id='test_container'>
 
-          <section id="test_header">
-            <div id="question_header">
+          <section id='test_header'>
+            <div id='question_header'>
               {this.state.questionCurrent.category}:
             </div>
-            <div id="question_body">{this.state.questionCurrent.question}</div>
+            <div id='question_body'>{this.state.questionCurrent.question}</div>
           </section>
 
-          {
-            this.state.showAnswer
+          {this.state.showAnswer
             ? <TestAnswer answer={correctAnswer} nextQuestion={this.nextQuestion.bind(this)}/>
             : <TestQuestion question={this.state.questionCurrent} validateAnswer={this.validateAnswer.bind(this)}/>
           }
@@ -88,8 +94,8 @@ class Test extends React.Component {
         </section>
       </main>
 
-    )
-  };
+    );
+  }
 }
 
 export default Test;
