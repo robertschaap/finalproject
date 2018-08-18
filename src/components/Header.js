@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Header = props => (
+const Header = ({ auth, handleLogout }) => (
   <header role='heading'>
     <h1>Flash Cards</h1>
-    {props.auth ? (
+    {auth ? (
       <nav>
         <Link to='/'>Cards</Link>
-        <a href='/' onClick={props.handleLogout}>Logout</a>
+        <a href='/' onClick={handleLogout}>Logout</a>
       </nav>
     ) : (
       <nav>Please log in below</nav>

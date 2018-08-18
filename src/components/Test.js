@@ -43,37 +43,47 @@ class Test extends React.Component {
   }
 
   validateAnswer(answer) {
-    if (answer.target.value === this.state.questionCurrent.right_answer ) {
-      this.props.changeScore(10, this.state.questionCurrent.identifier);
+    const { right_answer, identifier } = this.state.questionCurrent;
+    const { changeScore } = this.props;
+
+    if (answer.target.value === right_answer ) {
+      changeScore(10, identifier);
     } else {
-      this.props.changeScore(0, this.state.questionCurrent.identifier);
+      changeScore(0, identifier);
     }
     this.toggleResult();
   }
 
   nextQuestion() {
-    if (this.state.questionIndex === this.state.questions.length -1 ) {
+    const { questionIndex, questions, cardCount } = this.state;
+
+    if (questionIndex === questions.length -1 ) {
       this.setState({
         questionIndex: 0,
-        questionCurrent: this.state.questions[0]
+        questionCurrent: questions[0]
       });
     } else {
       this.setState({
-        questionIndex: this.state.questionIndex + 1,
-        questionCurrent: this.state.questions[this.state.questionIndex + 1],
-        cardCount: this.state.cardCount + 1
+        questionIndex: questionIndex + 1,
+        questionCurrent: questions[questionIndex + 1],
+        cardCount: cardCount + 1
       });
     }
     this.toggleResult();
   }
 
   render() {
-    let correctAnswer = '';
-    if (this.state.questionCurrent.right_answer === 'A') {
-      correctAnswer = this.state.questionCurrent.answer_a;
-    } else {
-      correctAnswer = this.state.questionCurrent.answer_b;
-    }
+    const {
+      answer_a,
+      answer_b,
+      category,
+      right_answer,
+      question,
+    } = this.state.questionCurrent;
+
+    const { showAnswer } = this.state;
+
+    let correctAnswer = right_answer === 'A' ? answer_a : answer_b;
 
     return (
       <main role='main'>
@@ -81,12 +91,12 @@ class Test extends React.Component {
 
           <section id='test_header'>
             <div id='question_header'>
-              {this.state.questionCurrent.category}:
+              {category}:
             </div>
-            <div id='question_body'>{this.state.questionCurrent.question}</div>
+            <div id='question_body'>{question}</div>
           </section>
 
-          {this.state.showAnswer
+          {showAnswer
             ? <TestAnswer answer={correctAnswer} nextQuestion={this.nextQuestion.bind(this)}/>
             : <TestQuestion question={this.state.questionCurrent} validateAnswer={this.validateAnswer.bind(this)}/>
           }

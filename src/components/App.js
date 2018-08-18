@@ -36,11 +36,13 @@ class App extends React.Component {
   }
 
   render() {
+    const { loggedIn } = this.state;
+
     return (
       <BrowserRouter>
         <div>
-          <Header auth={this.state.loggedIn} handleLogout={this.handleLogout.bind(this)}/>
-          {this.state.loggedIn ? (
+          <Header auth={loggedIn} handleLogout={this.handleLogout.bind(this)}/>
+          {loggedIn ? (
             <div>
               <Redirect to='/' />
               <Route exact path='/' component={TestPage} />

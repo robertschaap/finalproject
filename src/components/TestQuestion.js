@@ -1,14 +1,14 @@
 import React from 'react';
 
-const TestQuestion = props => (
+const TestQuestion = ({ question, validateAnswer }) => (
   <section id='test_body'>
     <div id='answer_a'>
-      <p>{props.question.answer_a}</p>
-      <input id='answer_a_button' type='button' onClick={props.validateAnswer} value='A'/>
+      <p>{question.answer_a}</p>
+      <input id='answer_a_button' type='button' onClick={validateAnswer} value='A'/>
     </div>
     <div id='answer_b'>
-      <p>{props.question.answer_b}</p>
-      <input id='answer_a_button' type='button' onClick={props.validateAnswer} value='B'/>
+      <p>{question.answer_b}</p>
+      <input id='answer_a_button' type='button' onClick={validateAnswer} value='B'/>
     </div>
   </section>
 );
