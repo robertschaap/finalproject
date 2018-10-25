@@ -85,21 +85,23 @@ class Test extends React.Component {
 
     return (
       <main role='main'>
-        <section id='test_container'>
+        {this.state.questions.length > 0 && (
+          <section id='test_container'>
 
-          <section id='test_header'>
-            <div id='question_header'>
-              {category}:
-            </div>
-            <div id='question_body'>{question}</div>
+            <section id='test_header'>
+              <div id='question_header'>
+                {category}:
+              </div>
+              <div id='question_body'>{question}</div>
+            </section>
+
+            {showAnswer
+              ? <TestAnswer answer={correctAnswer} nextQuestion={this.nextQuestion}/>
+              : <TestQuestion question={this.state.questionCurrent} validateAnswer={this.validateAnswer}/>
+            }
+
           </section>
-
-          {showAnswer
-            ? <TestAnswer answer={correctAnswer} nextQuestion={this.nextQuestion}/>
-            : <TestQuestion question={this.state.questionCurrent} validateAnswer={this.validateAnswer}/>
-          }
-
-        </section>
+        )}
       </main>
 
     );
