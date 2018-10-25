@@ -23,8 +23,9 @@ class App extends React.Component {
       });
   }
 
-  handleLogout() {
+  handleLogout = () => {
     localStorage.clear();
+    this.setState({ loggedIn: false });
   }
 
   componentWillMount() {
