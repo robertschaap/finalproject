@@ -3,23 +3,20 @@ import TestQuestion from './TestQuestion';
 import TestAnswer from './TestAnswer';
 
 class Test extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      questions: [],
-      questionIndex: 0,
-      questionCurrent: {
-        category: '',
-        identifier: '',
-        question: '',
-        answer_a: '',
-        answer_b: '',
-        right_answer: ''
-      },
-      showAnswer: false,
-      cardCount: 0
-    };
-  }
+  state = {
+    questions: [],
+    questionIndex: 0,
+    questionCurrent: {
+      category: '',
+      identifier: '',
+      question: '',
+      answer_a: '',
+      answer_b: '',
+      right_answer: ''
+    },
+    showAnswer: false,
+    cardCount: 0
+  };
 
   componentDidMount() {
     const headers = new Headers();
@@ -42,7 +39,7 @@ class Test extends React.Component {
     });
   }
 
-  validateAnswer(answer) {
+  validateAnswer = (answer) => {
     const { right_answer, identifier } = this.state.questionCurrent;
     const { changeScore } = this.props;
 
@@ -51,10 +48,11 @@ class Test extends React.Component {
     } else {
       changeScore(0, identifier);
     }
+
     this.toggleResult();
   }
 
-  nextQuestion() {
+  nextQuestion = () => {
     const { questionIndex, questions, cardCount } = this.state;
 
     if (questionIndex === questions.length -1 ) {
@@ -97,8 +95,8 @@ class Test extends React.Component {
           </section>
 
           {showAnswer
-            ? <TestAnswer answer={correctAnswer} nextQuestion={this.nextQuestion.bind(this)}/>
-            : <TestQuestion question={this.state.questionCurrent} validateAnswer={this.validateAnswer.bind(this)}/>
+            ? <TestAnswer answer={correctAnswer} nextQuestion={this.nextQuestion}/>
+            : <TestQuestion question={this.state.questionCurrent} validateAnswer={this.validateAnswer}/>
           }
 
         </section>
