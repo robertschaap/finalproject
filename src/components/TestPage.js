@@ -4,20 +4,17 @@ import Test from './Test';
 import Footer from './Footer';
 
 class TestPage extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      user: {
-        name: '',
-        xp: {
-          current: '',
-          goal: ''
-        },
-        timesTested: '',
-        timesCorrect: '',
-        level: ''
-      }
-    };
+  state = {
+    user: {
+      name: '',
+      xp: {
+        current: '',
+        goal: ''
+      },
+      timesTested: '',
+      timesCorrect: '',
+      level: ''
+    }
   }
 
   componentDidMount() {
@@ -43,7 +40,7 @@ class TestPage extends React.Component {
       .then(res => res.json());
   }
 
-  changeScore(score, id) {
+  changeScore = (score, id) =>  {
     this.updatePlayerStats(id, score > 0);
     let levelUp = false;
     if (this.state.user.xp.current === 250-score) {
@@ -66,7 +63,7 @@ class TestPage extends React.Component {
   render() {
     return (
       <div>
-        <Test changeScore={this.changeScore.bind(this)}/>
+        <Test changeScore={this.changeScore}/>
         <Footer user={this.state.user}/>
       </div>
     );
