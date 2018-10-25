@@ -2,22 +2,19 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 class LoginPage extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      email: '',
-      password: '',
-      doRedirect: false
-    };
-  }
+  state = {
+    email: '',
+    password: '',
+    doRedirect: false
+  };
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     const headers = {
@@ -46,11 +43,11 @@ class LoginPage extends React.Component {
 
     return (
       <main role='main'>
-        <form id='login' onSubmit={this.handleSubmit.bind(this)}>
+        <form id='login' onSubmit={this.handleSubmit}>
           <label>E-mail</label>
-          <input type='text' name='email' value={email} onChange={this.handleChange.bind(this)}/>
+          <input type='text' name='email' value={email} onChange={this.handleChange}/>
           <label>Password</label>
-          <input type='password' name='password' value={password} onChange={this.handleChange.bind(this)}/>
+          <input type='password' name='password' value={password} onChange={this.handleChange}/>
           <button type='submit'>Login</button>
         </form>
       </main>
