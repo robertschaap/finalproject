@@ -7,15 +7,11 @@ import TestPage from './TestPage';
 import LoginPage from './LoginPage';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = ({
-      loggedIn: false
-    });
+  state = {
+    loggedIn: true,
   }
 
-  checkAuth() {
+  checkAuth = () => {
     const headers = new Headers();
     headers.append('auth', localStorage.getItem('chip'));
 
@@ -41,7 +37,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <Header auth={loggedIn} handleLogout={this.handleLogout.bind(this)}/>
+          <Header auth={loggedIn} handleLogout={this.handleLogout}/>
           {loggedIn ? (
             <div>
               <Redirect to='/' />
@@ -50,7 +46,7 @@ class App extends React.Component {
           ) : (
             <div>
               <Redirect to='/login' />
-              <Route path='/login' render={() => <LoginPage checkAuth={this.checkAuth.bind(this)} />} />
+              <Route path='/login' render={() => <LoginPage checkAuth={this.checkAuth} />} />
             </div>
           )}
         </div>
