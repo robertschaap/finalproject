@@ -23,7 +23,7 @@ class LoginPage extends React.Component {
       body: JSON.stringify({ email: this.state.email, password: this.state.password })
     };
 
-    fetch('/api/login', { headers })
+    fetch('/api/login', headers)
       .then(res => res.json())
       .then(result => {
         localStorage.setItem('chip', result.token);
