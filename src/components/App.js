@@ -15,7 +15,7 @@ class App extends React.Component {
     const headers = new Headers();
     headers.append('auth', localStorage.getItem('chip'));
 
-    fetch('/api/verify', headers)
+    fetch('/api/verify', { headers })
       .then(res => {
         if (res.status === 200) {
           this.setState({ loggedIn: true });
