@@ -27,8 +27,7 @@ class LoginPage extends React.Component {
       .then(res => res.json())
       .then(result => {
         localStorage.setItem('chip', result.token);
-        this.setState({ doRedirect: true });
-        this.props.checkAuth();
+        this.setState({ doRedirect: true }, this.props.checkAuth());
       });
   }
 
