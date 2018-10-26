@@ -39,9 +39,11 @@ function checkToken(req, res, next) {
 
 //Routes
 app.post('/api/login', (req, res) => {
-  User.findOne({ email: req.body.email })
+  const { email, password } = req.body;
+
+  User.findOne({ email })
     .then(result => {
-      if (req.body.email === result.email && req.body.password === result.password) {
+      if (email === result.email && password === result.password) {
         res.json({
           token: jwt.sign({
             email: result.email,
@@ -52,7 +54,7 @@ app.post('/api/login', (req, res) => {
           { expiresIn: 86400 })
         });
       } else {
-        res.send('error!');
+        res.json('error!');
       }
     });
 });
