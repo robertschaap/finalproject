@@ -11,7 +11,7 @@ const QuestionSchema = Schema({
 });
 
 QuestionSchema.statics.new = (category, identifier, question, answer_a, answer_b, right_answer) => {
-  let record = new Question({
+  const record = new Question({
     category: category,
     identifier: identifier,
     question: question,
