@@ -7,9 +7,11 @@
 html {
   box-sizing: border-box;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
+
 body {
   font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
   background-color: var(--main-bg-color);
@@ -17,6 +19,7 @@ body {
   width: 80%;
   max-width: 800px
 }
+
 h1 {
   font-family: 'Snell Roundhand', sans-serif;
   font-weight: 400;
@@ -25,7 +28,11 @@ h1 {
   padding-bottom: 1rem;
   border-bottom: 1px solid black;
 }
-#answer_a_button, #answer_b_button, #next_button, #login button {
+
+#answer_a_button,
+#answer_b_button,
+#next_button,
+#login button {
   border: none;
   background-color: #ffcc66;
   border-radius: 5px;
@@ -34,21 +41,27 @@ h1 {
   padding: 0.5rem;
   width: 100%;
 }
-#answer_a_button:hover, #answer_b_button:hover {
+
+#answer_a_button:hover,
+#answer_b_button:hover {
   background-color: #70db70;
 }
 
-.codeone { color: black }
-.codetwo { color: black }
-.codethree { color: black }
+.codeone,
+.codetwo,
+.codethree {
+  color: black;
+}
 
 /*Section Styles*/
 #test_header {
   padding: 1rem;
 }
+
 #question_header {
   font-size: 0.8rem;
 }
+
 #test_body {
   background-color: white;
   border-radius: 10px;
@@ -56,6 +69,7 @@ h1 {
   padding: 0.5rem;
   width: 100%;
 }
+
 #test_body p {
   margin-top: 0;
   min-height: 10rem;
@@ -65,31 +79,38 @@ h1 {
   display: table;
   clear: both
 }
-#answer_a, #answer_b {
+
+#answer_a,
+#answer_b {
   width: 50%;
   float: left;
   padding: 1rem 0.6rem 0.6rem 0.6rem;
 }
+
 #result {
   width: 100%;
   float: left;
   padding: 1rem 0.6rem 0.6rem 0.6rem;
 }
+
 /*Header & Footer*/
 header {
   padding: 1rem;
   margin-bottom: 3rem
 }
+
 header nav a {
   text-decoration: none;
   padding-right: 1rem;
   color: black;
 }
+
 footer {
   padding: 1rem;
   margin-top: 1rem;
   text-align: right;
 }
+
 #player_stats p {
   border-bottom: 1px solid black;
 }
@@ -99,10 +120,14 @@ footer {
   padding: 1.1rem;
   width: 50%
 }
-#login label, #login input, #login button {
+
+#login label,
+#login input,
+#login button {
   display: block;
   width: 100%;
 }
+
 #login input {
   margin-bottom: 0.5rem;
   padding: 0.5rem 0.5rem;
@@ -114,24 +139,26 @@ footer {
   body {
     width: 95%;
   }
+
   header {
     margin-bottom: 0rem;
   }
+
   h1 {
     font-size: 2rem;
     padding-bottom: 0.5rem
   }
+
   #test_body p {
     min-height: 2rem;
   }
-  #answer_a, #answer_b {
+
+  #answer_a,
+  #answer_b {
     width: 100%;
   }
+
   #login {
     width: 100%
   }
 }
-
-/* @media print {
-
-} */
