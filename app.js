@@ -1,7 +1,7 @@
 // Declarations
 const express = require('express');
 const app = express();
-const myport = process.env.PORT || 3000;
+const myport = 4000;
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
