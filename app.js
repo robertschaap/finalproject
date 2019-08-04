@@ -81,8 +81,9 @@ app.get('/api/cards', checkToken, (req, res) => {
 
     // split tier results and rejoin random selection (40% good, 60% bad cards)
     .then(result => {
-      let tier1 = result.filter(e => e.rate === 'tier1' );
-      let tier2 = result.filter(e => e.rate === 'tier2' );
+      const tier1 = result.filter(e => e.rate === 'tier1' );
+      const tier2 = result.filter(e => e.rate === 'tier2' );
+
       return [
         ...Array.from({ length: 12 }, () => tier1[Math.floor(Math.random() * tier1.length)].identifier),
         ...Array.from({ length: 18 }, () => tier2[Math.floor(Math.random() * tier2.length)].identifier)
@@ -120,8 +121,8 @@ app.post('/api/stats', checkToken, (req, res) => {
   User.findOne({ email: req.token.email })
     .then(result => {
 
-      let index = result.stats.findIndex(e => e.identifier === req.body.identifier );
-      let record = result.stats[index];
+      const index = result.stats.findIndex(e => e.identifier === req.body.identifier );
+      const record = result.stats[index];
 
       result.stats.set(index, {
         identifier: record.identifier,
