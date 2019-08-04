@@ -16,7 +16,7 @@ const UserSchema = Schema({
 });
 
 UserSchema.statics.new = (name, password, email, stats) => {
-  let record = new User({
+  const record = new User({
     name: name,
     password: password,
     email: email,
