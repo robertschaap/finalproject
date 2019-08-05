@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
-// App Components
 import Header from './Header';
 import TestPage from './TestPage';
 import LoginPage from './LoginPage';
