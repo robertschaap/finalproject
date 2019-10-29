@@ -17,7 +17,7 @@
     "eslint-plugin-react": "^7.11.1",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
-    "mongoose": "^4.13.15",
+    "mongoose": "^5.7.5",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-router-dom": "^4.3.1",
