@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Footer = ({ user }) => {
+  const accuracyPercentage = Math.round(user.timesCorrect / user.timesTested * 100);
 
   return (
     <footer role='contentinfo'>
@@ -11,7 +12,7 @@ const Footer = ({ user }) => {
             ${user.level} -
             ${user.xp.current}/
             ${user.xp.goal} XP -
-            ${Math.round(user.timesCorrect / user.timesTested * 100)}%
+            ${Number.isFinite(accuracyPercentage) ? accuracyPercentage : 0}%
           `}
         </p>
       </section>
